@@ -1,0 +1,17 @@
+
+
+<div class="row">
+  <%= form_for (@blog) do|f| %>
+      <div class="col s12">
+        <div class="row">
+          <div class="input-field col s12 ">
+            <%= f.text_area :text %>
+            <%= f.label:ブログを作成 %>
+          </div>
+        </div>
+      <%= f.submit "送信"%>
+      </div>
+  <% end %>
+</div>
+
+

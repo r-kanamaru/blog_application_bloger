@@ -1,0 +1,27 @@
+<p class="current_user_show"><%= @name %>さんの投稿一覧<p>
+<%= @blogs.each do|blog| %>
+
+  <div class="content">
+    <div class="col s12">
+
+      <div class="card">
+        <div class="card-content">
+          <%= simple_format(blog.user.name) %>
+          <%= simple_format(blog.text) %>
+        </div>
+
+        <div class="card-action">
+
+        <% if user_signed_in? && current_user.id == blog.user_id %>
+          <%= link_to '編集',"/blogs/#{blog.id}/edit",method: :get,class:"btn" %>
+          <%= link_to '削除',"/blogs/#{blog.id}",method: :delete,class:"btn" %>
+        <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<% end %>
+<%= paginate(@blogs) %>
+<script type="text/javascript" src="./app.js"></script>

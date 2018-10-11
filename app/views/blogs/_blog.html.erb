@@ -1,0 +1,17 @@
+  <div class="content ">
+    <div class="col s12 ">
+      <div class="card">
+        <div class="card-content">
+          <%= simple_format(blog.user.name) %>
+          <%= simple_format(blog.text) %>
+        </div>
+        <div class="card-action">
+          <%= link_to '見る',"/blogs/#{blog.id}",method: :get,class:"btn" %>
+          <% if user_signed_in? && current_user.id == blog.user_id %>
+          <%= link_to '編集',"/blogs/#{blog.id}/edit",method: :get,class:"btn" %>
+          <%= link_to '削除',"/blogs/#{blog.id}",method: :delete,class:"btn" %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>

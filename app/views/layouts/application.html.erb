@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bloger</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<nav class="teal darken-1">
+  <div class="nav-wrapper">
+    <a href="/" class="brand-logo">bloger</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <%  if user_signed_in? %>
+      <li><%= current_user.name %>さん</li>
+      <li><%= link_to "ログアウト",destroy_user_session_path,method: :delete%></li>
+      <li><a href="blogs/new">新規作成</a></li>
+      <li><a href="/users/<%= current_user.id %>">マイページ</a></li>
+      <% else %>
+      <li><%= link_to "ログイン",new_user_session_path,method: :post %></li>
+      <li><%= link_to "新規登録",new_user_registration_path,method: :get %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+
+<%= yield %>
+
+</body>
+</html>
